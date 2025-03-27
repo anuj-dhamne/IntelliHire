@@ -1,16 +1,16 @@
 import { Router } from "express";
-import {verifyJwt} from "../middleware/auth.middleware.js"
-import { generateInterviewFeedback, getInterviewHistory, saveAnswer, startInterview } from "../controller/interview.controller";
+import {verifyJWT} from "../middleware/auth.middleware.js"
+import { generateInterviewFeedback, getInterviewHistory, saveAnswer, startInterview } from "../controller/interview.controller.js";
 
 
 const interviewRouter = Router();
 
-interviewRouter.post("/start-interview",verifyJwt,startInterview);
+interviewRouter.post("/start-interview",verifyJWT,startInterview);
 
-interviewRouter.post("/save-answer",verifyJwt,saveAnswer);
+interviewRouter.post("/save-answer",verifyJWT,saveAnswer);
 
-interviewRouter.get("/get-feedback",verifyJwt,generateInterviewFeedback);
+interviewRouter.get("/get-feedback",verifyJWT,generateInterviewFeedback);
 
-interviewRouter.get("/get-history",verifyJwt,getInterviewHistory)
+interviewRouter.get("/get-history",verifyJWT,getInterviewHistory)
 
 export default interviewRouter;

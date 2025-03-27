@@ -1,10 +1,10 @@
 import { Router } from "express";
-import {verifyJwt} from "../middleware/auth.middleware.js"
+import {verifyJWT} from "../middleware/auth.middleware.js"
 import { getDetailedProgressReport, getProgressOverview } from "../controller/progress.controller.js";
 
 const progressRouter =Router();
 
-progressRouter.get("/get-progress-overview",verifyJwt,getProgressOverview)
-progressRouter.get("/get-detail-progress",verifyJwt,getDetailedProgressReport)
+progressRouter.get("/get-progress-overview",verifyJWT,getProgressOverview)
+progressRouter.get("/get-detail-progress",verifyJWT,getDetailedProgressReport)
 
 export default progressRouter;

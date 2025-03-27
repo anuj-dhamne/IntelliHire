@@ -1,7 +1,7 @@
-import Progress from "../models/progress.model.js";
+// import Progress from "../models/progress.model.js";
 import Interview from "../models/interview.model.js";
 import Feedback from "../models/feedback.model.js";
-import asyncHandler from "../utils/asyncHandler.js";
+import {asyncHandler} from "../utils/asyncHandler.js";
 
 // Get Progress Overview
 const getProgressOverview = asyncHandler(async (req, res) => {

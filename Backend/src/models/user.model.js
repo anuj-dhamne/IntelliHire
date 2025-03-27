@@ -1,4 +1,6 @@
 import mongoose from "mongoose"
+import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 
 const userSchema= new mongoose.Schema({
     name: {
@@ -47,7 +49,7 @@ userSchema.methods.generateAccessToken=function (){
             _id:this._id,
              email:this.email,
              username:this.username,
-             fullname:this.fullname    
+             name:this.name    
         },
         process.env.ACCESS_TOKEN_SECRET,
         {expiresIn:process.env.ACCESS_TOKEN_EXPIRY}
@@ -63,4 +65,5 @@ userSchema.methods.generateRefreshToken=function (){
     )
 }
 const User=mongoose.model("User",userSchema);
+
 export default User;
