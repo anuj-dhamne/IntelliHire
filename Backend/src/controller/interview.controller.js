@@ -11,28 +11,31 @@ const startInterview = asyncHandler(async (req, res) => {
     try {
         const { jobDescription, position, level } = req.body;
         const userId = req.user._id;
-
+        console.log("user id : ",userId);
         // Generate AI-based interview questions
         const questionsData = await generateQuestions(jobDescription, position, level);
 
+        // console.log(" qs by ai : ",questionsData);
         // Create a new interview session
-        const newInterview = new Interview({
+        const newInterview = await Interview.create({
             user: userId,
             jobDescription,
             position,
             level,
         });
-        await newInterview.save();
-
+        
+        console.log("Interview id ",newInterview._id);
         // Save questions linked to this interview
         const questions = await Question.insertMany(
             questionsData.map(q => ({
                 interview: newInterview._id,
-                questionText: q.text,
+                questionText: q.questionText,
                 category: q.category,
                 difficulty: q.difficulty
             }))
         );
+
+        // console.log("Quetion : ",questions);
 
         return res.status(201).json({
             success: true,

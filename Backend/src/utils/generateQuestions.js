@@ -17,7 +17,15 @@ const generateQuestions = async (jobDescription, position, level) => {
             }
         );
 
-        const responseText = response.data.candidates[0].content.parts[0].text;
+        let responseText = response.data.candidates[0].content.parts[0].text;
+
+        
+        // console.log("Raw Response from Gemini:", responseText);
+
+        responseText = responseText.replace(/```json|```/g, "").trim(); 
+
+        // console.log("New Response from Gemini:", responseText);
+
         return JSON.parse(responseText); // Parse JSON response from Gemini
     } catch (error) {
         console.error("Error generating AI questions:", error.message);

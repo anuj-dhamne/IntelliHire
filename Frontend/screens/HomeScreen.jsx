@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
 
   //   await AsyncStorage.removeItem('token');
   //   navigation.replace('Login'); // Redirect to login
@@ -11,9 +11,9 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to IntelliHire!</Text>
-      {/* <TouchableOpacity style={styles.button} onPress={logout}>
-        <Text style={styles.buttonText}>Logout</Text>
-      </TouchableOpacity> */}
+      <TouchableOpacity style={styles.button} >
+        <Text style={styles.buttonText} onPress={navigation.navigate("q-form")}>Get Started</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -30,6 +30,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+  },
+  button: {
+    width: '100%',
+    backgroundColor: '#007BFF',
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',
   },
 });
 export default HomeScreen;

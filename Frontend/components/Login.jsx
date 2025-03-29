@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Login = () => {
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
@@ -16,6 +16,11 @@ const Login = () => {
         username,
         password,
       });
+      
+      
+    const { accessToken, refreshToken } = response.data.data;
+    await AsyncStorage.setItem('accessToken', accessToken);
+    await AsyncStorage.setItem('refreshToken', refreshToken);
       console.log("Login Successful:", response.data);
       navigation.navigate("Home");
     } catch (error) {

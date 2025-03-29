@@ -5,18 +5,18 @@ const interviewSchema=new mongoose.Schema({
         ref: "User",
         required: true,
       },
-      jobTitle: {
+    position: {
         type: String,
-        required: true,
+        // required: true,
       },
       jobDescription: {
         type: String,
         required: true,
       },
-      experienceLevel: {
+      level: {
         type: String,
         enum: ["beginner", "intermediate", "advanced"],
-        required: true,
+        // required: true,
       },
       status: {
         type: String,
