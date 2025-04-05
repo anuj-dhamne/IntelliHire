@@ -9,7 +9,7 @@ interviewRouter.post("/start-interview",verifyJWT,startInterview);
 
 interviewRouter.post("/save-answer",verifyJWT,saveAnswer);
 
-interviewRouter.get("/get-feedback",verifyJWT,generateInterviewFeedback);
+interviewRouter.post("/get-feedback",verifyJWT,generateInterviewFeedback);
 
 interviewRouter.get("/get-history",verifyJWT,getInterviewHistory)
 

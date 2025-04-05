@@ -49,14 +49,16 @@ const startInterview = asyncHandler(async (req, res) => {
     }
 });
 
-
 const saveAnswer = asyncHandler(async (req, res) => {
+    
     try {
         const { interviewId, questionId, answerText } = req.body;
+        console.log("you r in save answer function ! ",answerText);
         const userId = req.user._id;
 
         // Check if the interview and question exist
         const interview = await Interview.findOne({ _id: interviewId, user: userId });
+        console.log("Found interview in db : ",interview);
         if (!interview) {
             return res.status(404).json({ success: false, message: "Interview not found!" });
         }
@@ -65,14 +67,18 @@ const saveAnswer = asyncHandler(async (req, res) => {
         if (!question) {
             return res.status(404).json({ success: false, message: "Question not found!" });
         }
-
+        console.log("Found the quetion in the Db : ",question);
         // Save the answer
         const newAnswer = new Answer({
             question: questionId,
             user: userId,
             answerText,
+            interview
         });
         await newAnswer.save();
+
+        console.log("the stored answer in DB : ",newAnswer);
+        
 
         return res.status(201).json({
             success: true,
@@ -89,18 +95,31 @@ const generateInterviewFeedback = asyncHandler(async (req, res) => {
     try {
         const { interviewId } = req.body;
         const userId = req.user._id;
+        console.log("Interview ID:", interviewId);
+        console.log("User ID:", userId);
+        
 
         // Fetch only the answers for the given interview and user
-        const answers = await Answer.find({ interview: interviewId, user: userId })
-            .populate("question", "questionText category difficulty");
+        // const answers = await Answer.find({ interview: interviewId, user: userId })
+        //     .populate("question", "questionText category difficulty");
 
+            const answers = await Answer.find({
+                interview: new mongoose.Types.ObjectId(interviewId),
+                user:userId,
+              }).populate("question", "questionText category difficulty");
+              if (!answers.length) {
+                console.log("⚠️ No answers found in DB for this interview and user");
+                return res.status(404).json({ success: false, message: "No answers found for this interview!" });
+            }
+            
+            console.log("The answer list send to backend : ",answers)
         if (!answers.length) {
             return res.status(404).json({ success: false, message: "No answers found for this interview!" });
         }
 
         // Generate AI feedback
         const feedbackData = await generateFeedback(interviewId); // Now correctly passing interviewId
-
+        console.log("The genrated Feedback :",feedbackData);
         // Store feedback in the database
         const feedback = new Feedback({
             user: userId,
