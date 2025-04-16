@@ -9,11 +9,12 @@ import generateFeedback from "../utils/generateFeedback.js";
 
 const startInterview = asyncHandler(async (req, res) => {
     try {
-        const { jobDescription, position, level } = req.body;
+        const { jobDescription, position, level,quantity } = req.body;
         const userId = req.user._id;
         console.log("user id : ",userId);
+        console.log("Quantity of quetions : ",quantity);
         // Generate AI-based interview questions
-        const questionsData = await generateQuestions(jobDescription, position, level);
+        const questionsData = await generateQuestions(jobDescription, position, level,quantity);
 
         // console.log(" qs by ai : ",questionsData);
         // Create a new interview session
@@ -70,7 +71,7 @@ const saveAnswer = asyncHandler(async (req, res) => {
         console.log("Found the quetion in the Db : ",question);
         // Save the answer
         const newAnswer = new Answer({
-            question: questionId,
+            question,
             user: userId,
             answerText,
             interview
@@ -97,16 +98,27 @@ const generateInterviewFeedback = asyncHandler(async (req, res) => {
         const userId = req.user._id;
         console.log("Interview ID:", interviewId);
         console.log("User ID:", userId);
-        
+        // console.log("Is interviewId valid ObjectId:", mongoose.Types.ObjectId.isValid(interviewId));
+        // console.log("Is userId valid ObjectId:", mongoose.Types.ObjectId.isValid(userId));
+        // if (!mongoose.Types.ObjectId.isValid(interviewId)) {
+        //     console.error("Invalid interviewId format");
+        //     return res.status(400).json({ success: false, message: "Invalid interview ID" });
+        //   }
+        //   if (!mongoose.Types.ObjectId.isValid(userId)) {
+        //     console.error("Invalid userId format");
+        //     return res.status(400).json({ success: false, message: "Invalid user ID" });
+        //   }
+          
+        //   problem in below query ! 
 
-        // Fetch only the answers for the given interview and user
-        // const answers = await Answer.find({ interview: interviewId, user: userId })
-        //     .populate("question", "questionText category difficulty");
-
-            const answers = await Answer.find({
-                interview: new mongoose.Types.ObjectId(interviewId),
-                user:userId,
-              }).populate("question", "questionText category difficulty");
+        const answers = await Answer.find({
+            interview: interviewId,
+            user: userId,
+          })
+          .select("answerText question") // Only include answerText and question reference
+          .populate("question", "questionText"); // Only populate questionText from question
+          
+              
               if (!answers.length) {
                 console.log("⚠️ No answers found in DB for this interview and user");
                 return res.status(404).json({ success: false, message: "No answers found for this interview!" });
@@ -118,8 +130,8 @@ const generateInterviewFeedback = asyncHandler(async (req, res) => {
         }
 
         // Generate AI feedback
-        const feedbackData = await generateFeedback(interviewId); // Now correctly passing interviewId
-        console.log("The genrated Feedback :",feedbackData);
+        const feedbackData = await generateFeedback(answers); // Now correctly passing interviewId
+        // console.log("The genrated Feedback :",feedbackData);
         // Store feedback in the database
         const feedback = new Feedback({
             user: userId,
@@ -128,10 +140,12 @@ const generateInterviewFeedback = asyncHandler(async (req, res) => {
         });
         await feedback.save();
 
+        console.log("Saved Feedback : ",feedback);
+
         return res.status(201).json({
             success: true,
             message: "Feedback generated successfully!",
-            feedback
+            feedbackData
         });
 
     } catch (error) {

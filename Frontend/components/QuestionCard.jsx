@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  Platform,
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { server } from '@env';
 
 const QuestionCard = ({ question, difficulty, category, questionId, interviewId }) => {
   const [answer, setAnswer] = useState('');
-  const [feedback, setFeedback] = useState('');
+  const [inputHeight, setInputHeight] = useState(40);
 
   const handleSubmit = async () => {
-    console.log("Answer of Q_id: ",questionId);
-    console.log("Answer fro interview : ",interviewId);
-    console.log("Answer : ",answer);
-    if (!answer.trim()) return;
+    if (!answer.trim()) return Alert.alert('Error', 'Answer cannot be empty.');
+
     try {
       const accessToken = await AsyncStorage.getItem('accessToken');
       const response = await axios.post(
-        'http://192.168.196.148:3000/api/v1/interview/save-answer',
+        `${server}/interview/save-answer`,
         {
           answerText: answer,
           questionId,
@@ -29,61 +36,43 @@ const QuestionCard = ({ question, difficulty, category, questionId, interviewId 
           },
         }
       );
-      console.log('Answer submitted:', response.data);
-      Alert.alert("Answer Submitted", "Your answer has been recorded.");
+
+      Alert.alert('Answer Submitted', 'Your answer has been recorded.');
       setAnswer('');
+      setInputHeight(40);
     } catch (err) {
       console.error('Error submitting answer:', err);
-      Alert.alert("Submission Error", "Could not submit your answer.");
-    }
-  };
-
-  const handleFeedback = async () => {
-    if (!feedback.trim()) return;
-    try {
-      const accessToken = await AsyncStorage.getItem('accessToken');
-      const response = await axios.post(
-        'http://192.168.196.148:3000/api/v1/interview/feedback',
-        {
-          feedback,
-          questionId,
-          interviewId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      console.log('Feedback sent:', response.data);
-      Alert.alert("Feedback Sent", "Thank you for your feedback.");
-      setFeedback('');
-    } catch (err) {
-      console.error('Error sending feedback:', err);
-      Alert.alert("Feedback Error", "Could not send feedback.");
+      Alert.alert('Submission Error', 'Could not submit your answer.');
     }
   };
 
   return (
     <View style={styles.card}>
       <Text style={styles.questionText}>{question}</Text>
-      <Text style={styles.detail}>Category: {category}</Text>
-      <Text style={styles.detail}>Difficulty: {difficulty}</Text>
+      <Text style={styles.detail}>
+        Category: <Text style={styles.detailValue}>{category}</Text>
+      </Text>
+      <Text style={styles.detail}>
+        Difficulty: <Text style={styles.detailValue}>{difficulty}</Text>
+      </Text>
 
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
-          placeholder="Your answer..."
+          style={[styles.input, { height: Math.max(40, inputHeight) }]}
+          placeholder="Write your answer..."
+          placeholderTextColor="#999"
           value={answer}
           onChangeText={setAnswer}
+          onContentSizeChange={(e) =>
+            setInputHeight(e.nativeEvent.contentSize.height)
+          }
+          multiline
+          textAlignVertical="top"
         />
-        <TouchableOpacity onPress={handleSubmit}>
-          <Ionicons name="send" size={24} color="#007BFF" />
+        <TouchableOpacity style={styles.sendButton} onPress={handleSubmit}>
+          <Ionicons name="send" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
-
-      
     </View>
   );
 };
@@ -91,57 +80,54 @@ const QuestionCard = ({ question, difficulty, category, questionId, interviewId 
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
-    padding: 15,
-    marginVertical: 10,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#ddd',
+    padding: 25,
+    borderRadius: 16,
+    marginVertical: 12,
     width: '100%',
-    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.15,
+    shadowRadius: 5,
+    elevation: 4, // Android shadow
   },
   questionText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#222',
+    marginBottom: 12,
   },
   detail: {
     fontSize: 14,
     color: '#666',
-    marginBottom: 5,
+    marginBottom: 4,
+  },
+  detailValue: {
+    color: '#222',
+    fontWeight: '500',
   },
   inputContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    width: '100%',
-    marginTop: 10,
+    backgroundColor: '#f1f1f1',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: Platform.OS === 'ios' ? 10 : 6,
+    marginTop: 16,
+    alignItems: 'flex-end',
   },
   input: {
     flex: 1,
-    height: 40,
+    fontSize: 14,
+    color: '#000',
+    paddingVertical: 8,
+    paddingRight: 10,
+    maxHeight: 150,
   },
-  feedbackInput: {
-    width: '100%',
-    height: 40,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginTop: 10,
-  },
-  feedbackButton: {
-    marginTop: 10,
-    backgroundColor: '#28a745',
-    padding: 10,
-    borderRadius: 5,
-  },
-  feedbackText: {
-    color: '#fff',
-    fontWeight: 'bold',
+  sendButton: {
+    backgroundColor: '#333',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

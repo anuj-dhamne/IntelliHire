@@ -7,7 +7,7 @@ const verifyJWT=asyncHandler(async (req,res,next)=>{
 
 try {
     const token= req.header("Authorization")?.replace("Bearer ","");
-    console.log("Token Received : ",token)
+    // console.log("Token Received : ",token)
     
     if(!token){
         return res.status(401).json({messgae:"Unauthorised request !"})

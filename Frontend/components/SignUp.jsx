@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import axios from "axios";
+import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import { server } from '@env';
 
 const Signup = () => {
   const navigation = useNavigation();
@@ -14,7 +15,7 @@ const Signup = () => {
     console.log("Signup Data:", { name, username, email, password });
 
     try {
-      const response = await axios.post('http://192.168.196.148:3000/api/v1/user/register', {
+      const response = await axios.post(`${server}/user/register`, {
         name,
         username,
         email,
@@ -92,39 +93,43 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#fff', // White background for the whole app
     padding: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 20,
+    color: '#000', // Black title
+    marginBottom: 30,
   },
   input: {
     width: '100%',
     height: 50,
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    marginBottom: 15,
+    borderColor: '#ccc', // Soft grey border for input fields
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    marginBottom: 20,
+    fontSize: 16,
+    color: '#000', // Black text for inputs
   },
   button: {
     width: '100%',
-    backgroundColor: '#007BFF',
+    backgroundColor: '#333', // Dark grey button color
     padding: 15,
-    borderRadius: 8,
+    borderRadius: 10,
     alignItems: 'center',
   },
   buttonText: {
-    color: '#fff',
+    color: '#fff', // White text on the button
     fontSize: 18,
     fontWeight: 'bold',
   },
   link: {
-    marginTop: 15,
-    color: '#007BFF',
+    marginTop: 20,
+    color: '#007BFF', // Blue color for links
     fontSize: 16,
+    textDecorationLine: 'underline', // Underlined text for the link
   },
 });
 

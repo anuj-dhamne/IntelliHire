@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const generateQuestions = async (jobDescription, position, level) => {
+const generateQuestions = async (jobDescription, position, level,quantity) => {
     try {
-        const prompt = `Generate ${level} level interview questions for the position of ${position} based on the following job description:\n\n${jobDescription}
+        const prompt = `Generate only ${quantity} ${level} level interview questions for the position of ${position} based on the following job description:\n\n${jobDescription}
         \n\nProvide questions categorized as "technical", "behavioral", or "situational". Also, specify their difficulty as "easy", "medium", or "hard". Return the result in JSON format as an array of objects with keys: questionText, category, and difficulty.`;
 
         const response = await axios.post(
