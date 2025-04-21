@@ -70,10 +70,33 @@ const loginUser=asyncHandler(async (req,res)=>{
     new ApiResponse(200, { accessToken, refreshToken, user: { _id: user._id, username: user.username, email: user.email } }, "Login successful.")
 );
 });
- const getUserProfile = asyncHandler(async (req, res) => {
+const getUserProfile = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id).select("-password");
     if (!user) throw new ApiError(404, "User not found.");
 
     return res.status(200).json(new ApiResponse(200, user, "User profile fetched successfully."));
 });
-export {loginUser,userRegister,getUserProfile}
+const logout=asyncHandler(async(req,res)=>{
+    await User.findByIdAndUpdate(
+        req.user._id,
+        {
+            $unset:{
+                refreshToken:1
+            }
+        },{
+            new:true
+        }
+    )
+    const options={
+        httpOnly:true,
+        secure:true,
+        sameSite:"None"
+    }
+
+    return res.status(200)
+    .clearCookie("accessToken",options)
+    .clearCookie("refreshToken",options)
+    .json(new ApiResponse(200,{},"User Logout Successfully !"));
+})
+
+export {loginUser,userRegister,getUserProfile,logout}

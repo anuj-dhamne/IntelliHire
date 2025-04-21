@@ -1,42 +1,68 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View, Text,StatusBar, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import Navbar from '../components/Navbar'; // Adjust path as needed
 
-const HomeScreen = ({navigation}) => {
-
-  //   await AsyncStorage.removeItem('token');
-  //   navigation.replace('Login'); // Redirect to login
-  // };
-
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to IntelliHire!</Text>
-      <TouchableOpacity style={styles.button} >
-        <Text style={styles.buttonText} onPress={navigation.navigate("q-form")}>Get Started</Text>
-      </TouchableOpacity>
+       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+      <Navbar title="Home" />
+      
+      <View style={styles.content}>
+        <Image
+          source={require('../assets/Logo.png')} // Replace with actual image path
+          style={styles.image}
+          resizeMode="contain"
+        />
+
+        {/* <Text style={styles.title}>Welcome to IntelliHire!</Text> */}
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("q-form")}
+        >
+          <Text style={styles.buttonText}>Get Started</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
-// Styles remain the same
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
+  },
+  content: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    paddingHorizontal: 20,
+    paddingVertical: 40,
+  },
+  image: {
+    width: 200,
+    height: 200,
+    marginBottom: 10,
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
-    marginBottom: 20,
+    color: '#000',
+    marginBottom: 30,
   },
   button: {
     width: '100%',
-    backgroundColor: '#007BFF',
+    backgroundColor: '#333', // Black button
     padding: 15,
-    borderRadius: 8,
+    borderRadius: 10,
     alignItems: 'center',
   },
+  buttonText: {
+    color: '#fff', // White text on button
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });
+
 export default HomeScreen;

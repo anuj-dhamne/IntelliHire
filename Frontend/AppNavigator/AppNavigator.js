@@ -9,6 +9,8 @@ import InterviewScreen from "../screens/InterviewScreen.jsx"
 import SplashScreen from '../screens/SplashScreen.jsx';
 import QuestionsScreen from '../screens/QuestionsScreen.jsx';
 import ResultScreen from '../screens/ResultScreen.jsx';
+import HistoryScreen from "../screens/HistoryScreen.jsx"
+import ProfileScreen from '../screens/ProfileScreen.jsx';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -22,6 +24,8 @@ const AppNavigator = () => {
         <Stack.Screen name="q-form" component={InterviewScreen} />
         <Stack.Screen name="question-screen" component={QuestionsScreen} />
         <Stack.Screen name="result-screen" component={ResultScreen} />
+        <Stack.Screen name="history" component={HistoryScreen} />
+        <Stack.Screen name="profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

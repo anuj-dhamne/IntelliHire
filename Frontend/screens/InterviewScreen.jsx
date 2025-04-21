@@ -173,12 +173,13 @@
 
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, Alert,ScrollView,SafeAreaView ,StatusBar} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { server } from "@env";
+import Navbar from '../components/Navbar';
 
 const JobQuestionForm = () => {
   const navigation = useNavigation();
@@ -254,10 +255,13 @@ const JobQuestionForm = () => {
   
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Interview Setup</Text>
-
-      <TextInput
+   <>
+      <SafeAreaView style={styles.container}>
+         <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+      <Navbar title="Interview" />
+      
+      <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
+        <TextInput
         style={styles.input}
         placeholder="Job Title"
         value={jobTitle}
@@ -297,7 +301,9 @@ const JobQuestionForm = () => {
           <Text style={styles.buttonText}>Start Interview</Text>
         )}
       </TouchableOpacity>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
+   </>
   );
 };
 
@@ -305,8 +311,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F8FAFC',
-    padding: 20,
-    justifyContent: 'center',
+    // marginTop:40
+  },
+  scrollContainer: {
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 50,
+    flexGrow: 1,
   },
   title: {
     fontSize: 28,

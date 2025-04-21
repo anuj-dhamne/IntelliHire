@@ -11,6 +11,6 @@ interviewRouter.post("/save-answer",verifyJWT,saveAnswer);
 
 interviewRouter.post("/get-feedback",verifyJWT,generateInterviewFeedback);
 
-interviewRouter.get("/get-history",verifyJWT,getInterviewHistory)
+interviewRouter.get("/get-history",verifyJWT,getInterviewHistory);
 
 export default interviewRouter;

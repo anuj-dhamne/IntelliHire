@@ -5,6 +5,7 @@ import Feedback from "../models/feedback.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import generateQuestions from "../utils/generateQuestions.js"; 
 import generateFeedback from "../utils/generateFeedback.js"; 
+import mongoose from "mongoose";
 
 
 const startInterview = asyncHandler(async (req, res) => {
@@ -97,19 +98,8 @@ const generateInterviewFeedback = asyncHandler(async (req, res) => {
         const { interviewId } = req.body;
         const userId = req.user._id;
         console.log("Interview ID:", interviewId);
+        const interview = await Interview.findById(interviewId);
         console.log("User ID:", userId);
-        // console.log("Is interviewId valid ObjectId:", mongoose.Types.ObjectId.isValid(interviewId));
-        // console.log("Is userId valid ObjectId:", mongoose.Types.ObjectId.isValid(userId));
-        // if (!mongoose.Types.ObjectId.isValid(interviewId)) {
-        //     console.error("Invalid interviewId format");
-        //     return res.status(400).json({ success: false, message: "Invalid interview ID" });
-        //   }
-        //   if (!mongoose.Types.ObjectId.isValid(userId)) {
-        //     console.error("Invalid userId format");
-        //     return res.status(400).json({ success: false, message: "Invalid user ID" });
-        //   }
-          
-        //   problem in below query ! 
 
         const answers = await Answer.find({
             interview: interviewId,
@@ -131,11 +121,11 @@ const generateInterviewFeedback = asyncHandler(async (req, res) => {
 
         // Generate AI feedback
         const feedbackData = await generateFeedback(answers); // Now correctly passing interviewId
-        // console.log("The genrated Feedback :",feedbackData);
+        console.log("The genrated Feedback :",feedbackData);
         // Store feedback in the database
         const feedback = new Feedback({
             user: userId,
-            interview: interviewId,
+            interview,
             feedback: feedbackData
         });
         await feedback.save();
@@ -157,7 +147,7 @@ const getInterviewHistory = asyncHandler(async (req, res) => {
     try {
         const userId = req.user._id;
         const interviews = await Interview.find({ user: userId }).sort({ createdAt: -1 });
-
+        
         return res.status(200).json({
             success: true,
             message: "Interview history fetched successfully!",
