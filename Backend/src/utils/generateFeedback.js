@@ -4,7 +4,6 @@ const generateFeedback = async (answers) => {
     try {
         const formattedAnswers = answers.map(a => `Q: ${a.question.questionText}\nA: ${a.answerText}`).join("\n\n");
 
-//         const prompt = `You are an AI interview evaluator. Analyze the following interview responses:\n\n${formattedAnswers}
 
 // Evaluate each answer based on clarity, relevance, and depth. For each answer:
 // - Assign marks out of 10
@@ -34,20 +33,20 @@ Evaluate each answer based on clarity, relevance, and depth. For each answer:
 
 Then, write a **single, well-structured feedback** summarizing the candidate's overall performance, strengths, and areas for improvement.
 
-After the evaluation, recommend improvement resources based on weak areas. For this:
+After the evaluation, recommend improvement resources based on the overall interview topics. For this:
 
 🔗 Website Links:
-- Provide exactly **2 reliable and accessible website links** related to the weak areas identified (e.g., from GeeksforGeeks, freeCodeCamp, MDN, W3Schools, etc.).
-- The links **must be live, active, and directly related** to the specific topic.
+- Provide exactly **2 reliable and accessible website links** related to any topic covered in the interview.
+- The links **must be live, active, and directly related** to a specific topic (e.g., from GeeksforGeeks, freeCodeCamp, MDN, W3Schools, etc.).
 - ⚠️ Avoid generic homepage links (like "https://geeksforgeeks.org"). Each link should go to a specific article or topic page.
 - Only return working URLs from trusted sources — do NOT make up or guess links.
 
 🎥 YouTube Video:
-- Provide **1 working YouTube video link** that clearly explains a weak topic.
+- Provide **1 working YouTube video link** that explains a topic mentioned in the interview — it does NOT have to be related to the candidate’s weak areas.
 - ✅ The video must be **publicly available**, **not broken**, and must **exist on YouTube** at the time of generation.
 - ✅ Do NOT make up or hallucinate YouTube URLs — only return an actual, valid YouTube link that exists.
-- ✅ You must simulate a real YouTube or Google search and choose the top, most relevant result.
-- ⚠️ Do NOT return placeholder or unavailable videos. Verify that the link is accessible and related to the topic.
+- ✅ Simulate a real YouTube or Google search and choose the top, most relevant result based on any mentioned topic.
+- ⚠️ Do NOT return placeholder or unavailable videos. Verify that the link is accessible and relevant to a topic from the interview.
 - ✅ If no reliable link is found, provide the **title and channel name** of a real video and a search keyword (like: "JavaScript closures tutorial site:youtube.com").
 
 Return the output strictly in the following JSON format:
@@ -67,6 +66,7 @@ Return the output strictly in the following JSON format:
     "youtube": "https://youtube.com/actual-working-video-link"
   }
 }`;
+
 
         const response = await axios.post(
             `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
