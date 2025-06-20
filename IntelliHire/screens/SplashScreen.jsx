@@ -13,7 +13,6 @@ const SplashScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image source={require('../assets/Logo.png')} style={styles.logo} />
-      {/* <Text style={styles.text}>HireWise</Text> */}
     </View>
   );
 };

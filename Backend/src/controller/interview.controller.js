@@ -115,9 +115,9 @@ const generateInterviewFeedback = asyncHandler(async (req, res) => {
             }
             
             console.log("The answer list send to backend : ",answers)
-        if (!answers.length) {
-            return res.status(404).json({ success: false, message: "No answers found for this interview!" });
-        }
+        // if (!answers.length) {
+        //     return res.status(404).json({ success: false, message: "No answers found for this interview!" });
+        // }
 
         // Generate AI feedback
         const feedbackData = await generateFeedback(answers); // Now correctly passing interviewId

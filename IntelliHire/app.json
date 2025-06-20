@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Frontend",
-    "slug": "Frontend",
+    "name": "IntelliHire",
+    "slug": "IntelliHire",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,18 +17,22 @@
     },
     "android": {
       "adaptiveIcon": {
+        "permissions": [
+          "INTERNET"
+        ],
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anuj_dhamne.Frontend"
+      "package": "com.anuj_dhamne.IntelliHire"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "99a9ba94-59ef-46e8-9b0f-ec6b64dbee99"
+        "projectId": "ecf34db1-df43-4d88-929a-9afc3e10acc0"
       }
-    }
+    },
+    "owner": "anuj_dhamne"
   }
 }

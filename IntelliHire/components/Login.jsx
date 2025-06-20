@@ -12,22 +12,20 @@ const Login = () => {
 
   const onLogin = async () => {
     console.log('Login Data:', { username, password });
-
     try {
       const response = await axios.post(`${server}/user/login`, {
         username,
         password,
       });
-      
       const { accessToken, refreshToken } = response.data.data;
       await AsyncStorage.setItem('accessToken', accessToken);
       await AsyncStorage.setItem('refreshToken', refreshToken);
       console.log("Login Successful:", response.data);
       navigation.navigate("Home");
     } catch (error) {
-      if(error.response?.data?.statusCode === 400){
+      if (error.response?.data?.statusCode === 400) {
         Alert.alert("Invalid Username or Password!");
-      } else if(error.response?.data?.statusCode === 500){
+      } else if (error.response?.data?.statusCode === 500) {
         Alert.alert("User not created!");
       }
     }
