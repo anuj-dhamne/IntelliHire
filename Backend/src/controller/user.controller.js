@@ -61,7 +61,7 @@ const loginUser=asyncHandler(async (req,res)=>{
  const isPassword=await user.isPasswordCorrect(password);
 
  if(!isPassword){
-    return res.status(400).json({ message: "Invalid email or password" });
+    return res.status(401).json({ message: "Invalid email or password" });
  }
 
  const {accessToken,refreshToken}= await generateAccessAndRefreshToken(user._id);

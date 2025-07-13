@@ -22,7 +22,11 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static("public"))
 app.use(cookieParser())
 
-
+// adding ping route
+app.get("/ping", (req, res) => {
+  console.log("Ping received");
+  res.send("ping received");
+});
 // import user route 
 import userRouter from "./routes/user.routes.js"
 app.use("/api/v1/user",userRouter);
