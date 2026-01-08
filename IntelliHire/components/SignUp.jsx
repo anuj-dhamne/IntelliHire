@@ -52,6 +52,7 @@ const Signup = () => {
       <TextInput
         style={styles.input}
         placeholder="Full Name"
+        placeholderTextColor="#9E9E9E"
         value={name}
         onChangeText={setName}
         autoCapitalize="words"
@@ -60,6 +61,7 @@ const Signup = () => {
       <TextInput
         style={styles.input}
         placeholder="Username"
+        placeholderTextColor="#9E9E9E"
         value={username}
         onChangeText={setUsername}
         autoCapitalize="none"
@@ -68,6 +70,7 @@ const Signup = () => {
       <TextInput
         style={styles.input}
         placeholder="Email"
+        placeholderTextColor="#9E9E9E"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
@@ -77,6 +80,7 @@ const Signup = () => {
       <TextInput
         style={styles.input}
         placeholder="Password"
+        placeholderTextColor="#9E9E9E"
         value={password}
         onChangeText={setPassword}
         secureTextEntry

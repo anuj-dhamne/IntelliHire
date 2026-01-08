@@ -4,7 +4,7 @@
     "slug": "IntelliHire",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Logo_mini.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
 
@@ -20,7 +20,7 @@
 
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/Logo_mini.png",
         "backgroundColor": "#ffffff"
       },
       "permissions": ["INTERNET"],

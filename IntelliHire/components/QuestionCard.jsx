@@ -61,7 +61,7 @@ const QuestionCard = ({ question, difficulty, category, questionId, interviewId 
         <TextInput
           style={[styles.input, { height: Math.max(40, inputHeight) }]}
           placeholder="Write your answer..."
-          placeholderTextColor="#999"
+          placeholderTextColor="#9E9E9E"
           value={answer}
           onChangeText={setAnswer}
           onContentSizeChange={(e) =>

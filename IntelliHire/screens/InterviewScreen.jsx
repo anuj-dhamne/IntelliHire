@@ -94,6 +94,7 @@ const JobQuestionForm = () => {
         <TextInput
         style={styles.input}
         placeholder="Job Title"
+        placeholderTextColor="#9E9E9E"
         value={jobTitle}
         onChangeText={setJobTitle}
       />
@@ -101,6 +102,7 @@ const JobQuestionForm = () => {
       <TextInput
         style={[styles.input, styles.textArea]}
         placeholder="Job Description"
+        placeholderTextColor="#9E9E9E"
         value={jobDescription}
         onChangeText={setJobDescription}
         multiline
@@ -109,6 +111,7 @@ const JobQuestionForm = () => {
       <TextInput
         style={styles.input}
         placeholder="Number of Questions"
+        placeholderTextColor="#9E9E9E"
         value={numQuestions}
         onChangeText={setNumQuestions}
         keyboardType="numeric"
