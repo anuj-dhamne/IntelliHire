@@ -69,7 +69,7 @@ Return the output strictly in the following JSON format:
 
 
         const response = await axios.post(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+            `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
             {
                 contents: [{ role: "user", parts: [{ text: prompt }] }]
             },
@@ -93,7 +93,7 @@ Return the output strictly in the following JSON format:
         return JSON.parse(responseText);
 
     } catch (error) {
-        console.error("Error generating AI feedback:", error.message);
+        console.error("Error generating AI feedback:", error);
         return { error: "Failed to generate AI feedback." };
     }
 };

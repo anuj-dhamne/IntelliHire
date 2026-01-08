@@ -3,7 +3,6 @@ import {
   View,
   Text,
   FlatList,
-  SafeAreaView,
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
@@ -17,6 +16,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import QuestionCard from '../components/QuestionCard';
 import { server } from '@env';
 import Navbar from '../components/Navbar';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 function QuestionsScreen({ route, navigation }) {
   const [loading, setLoading] = useState(false);
@@ -37,6 +38,7 @@ function QuestionsScreen({ route, navigation }) {
           },
         }
       );
+
       console.log("Response for feedback : ",response.data)
       navigation.navigate('result-screen', {
         feedback: response.data,
@@ -44,6 +46,7 @@ function QuestionsScreen({ route, navigation }) {
       });
 
     } catch (err) {
+
       console.error('Error sending feedback:', err);
       Alert.alert('Feedback Error', 'Could not get feedback.');
     }finally{

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, ActivityIndicator, SafeAreaView, StatusBar, ScrollView } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, StatusBar, ScrollView } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { server } from '@env';
 import Navbar from '../components/Navbar';
 import ProfileCard from '../components/ProfileCard';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const ProfileScreen = () => {
   const [userData, setUserData] = useState(null);
@@ -12,6 +14,7 @@ const ProfileScreen = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
+
       try {
         const token = await AsyncStorage.getItem('accessToken');
         const res = await axios.get(`${server}/user/get-user-profile`, {
@@ -23,6 +26,7 @@ const ProfileScreen = () => {
         // console.log("Fetched user data:", res.data);
         setUserData(res.data.data); 
       } catch (error) {
+
         console.error("Error fetching user data:", error);
       } finally {
         setLoading(false);

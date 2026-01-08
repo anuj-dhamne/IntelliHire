@@ -6,7 +6,7 @@ const generateQuestions = async (jobDescription, position, level,quantity) => {
         \n\nProvide questions categorized as "technical", "behavioral", or "situational". Also, specify their difficulty as "easy", "medium", or "hard". Return the result in JSON format as an array of objects with keys: questionText, category, and difficulty.`;
 
         const response = await axios.post(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+            `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
             {
                 contents: [{ role: "user", parts: [{ text: prompt }] }]
             },
@@ -28,7 +28,7 @@ const generateQuestions = async (jobDescription, position, level,quantity) => {
 
         return JSON.parse(responseText); // Parse JSON response from Gemini
     } catch (error) {
-        console.error("Error generating AI questions:", error.message);
+        console.error("Error generating AI questions:", error);
         return [];
     }
 };

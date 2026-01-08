@@ -6,19 +6,21 @@ import {
   StyleSheet,
   ActivityIndicator,
   FlatList,
-  SafeAreaView,
   StatusBar,
 } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { server } from '@env';
 import Navbar from '../components/Navbar';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const InterviewCardScreen = () => {
   const [interviews, setInterviews] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
     const fetchInterviewDetails = async () => {
       try {
         const accessToken = await AsyncStorage.getItem('accessToken');

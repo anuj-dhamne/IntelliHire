@@ -52,10 +52,13 @@ const userRegister=asyncHandler(async (req,res)=>{
 })
 const loginUser=asyncHandler(async (req,res)=>{
  const {username,password}=req.body;
+ console.log("login details :",username," ",password);
  const user=await User.findOne({
     username
  })
+ console.log("Fetch User : ",user);
  if(!user){
+    console.log("User is not in DB ! ");
     return res.status(400).json({ message: "Invalid email or password" });
  }
  const isPassword=await user.isPasswordCorrect(password);

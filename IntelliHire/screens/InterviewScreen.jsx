@@ -1,12 +1,14 @@
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, Alert,ScrollView,SafeAreaView ,StatusBar} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, Alert,ScrollView ,StatusBar} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { server } from "@env";
 import Navbar from '../components/Navbar';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const JobQuestionForm = () => {
   const navigation = useNavigation();
@@ -73,6 +75,7 @@ const JobQuestionForm = () => {
       });
   
     } catch (error) {
+
       console.error('Error generating questions:', error);
       Alert.alert("Error", "Failed to generate questions.");
     }

@@ -30,6 +30,7 @@ const Signup = () => {
         navigation.navigate("Login");
       }
     } catch (error) {
+      console.log("error while signup : ",error);
       if (error.response) {
         if (error.response.data.statusCode === 400) {
           Alert.alert("Email or username already exists");

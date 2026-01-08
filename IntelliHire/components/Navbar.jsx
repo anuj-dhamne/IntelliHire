@@ -7,7 +7,6 @@ import { Ionicons } from '@expo/vector-icons';
 const Navbar = ({ title }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const navigation = useNavigation();
-
   const handleOption = (option) => {
     setDropdownVisible(false);
     switch (option) {

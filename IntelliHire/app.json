@@ -7,32 +7,36 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+
     "ios": {
       "supportsTablet": true
     },
+
     "android": {
       "adaptiveIcon": {
-        "permissions": [
-          "INTERNET"
-        ],
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "permissions": ["INTERNET"],
       "package": "com.anuj_dhamne.IntelliHire"
     },
+
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/Logo_mini.png"
     },
+
     "extra": {
       "eas": {
         "projectId": "ecf34db1-df43-4d88-929a-9afc3e10acc0"
       }
     },
+
     "owner": "anuj_dhamne"
   }
 }

@@ -8,7 +8,7 @@ import {
   Alert,
   Platform,
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { server } from '@env';
@@ -41,7 +41,8 @@ const QuestionCard = ({ question, difficulty, category, questionId, interviewId 
       setAnswer('');
       setInputHeight(40);
     } catch (err) {
-      console.error('Error submitting answer:', err);
+            console.log('Error submitting answer:', err);
+
       Alert.alert('Submission Error', 'Could not submit your answer.');
     }
   };

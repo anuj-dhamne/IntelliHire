@@ -26,6 +26,7 @@ const Login = () => {
       console.log("Login Successful:", response.data);
       navigation.navigate("Home");
     } catch (error) {
+      console.log("Error while login : ",error);
       if (error.response?.data?.statusCode === 400) {
         Alert.alert("Invalid Username");
       } 

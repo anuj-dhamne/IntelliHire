@@ -4,16 +4,18 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  SafeAreaView,
   StatusBar,
   TouchableOpacity,
   Linking,
 } from 'react-native';
 import Navbar from '../components/Navbar';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const ResultScreen = ({ route }) => {
   const { feedback, interviewId } = route.params;
   const res = feedback.feedbackData;
+
 
   const openURL = async (url) => {
     const supported = await Linking.canOpenURL(url);
