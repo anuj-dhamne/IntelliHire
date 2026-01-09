@@ -4,8 +4,10 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { server } from '@env';
+import { useAppColors } from '../theme/colors.js';
 
 const Login = () => {
+  const colors = useAppColors();
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -52,7 +54,7 @@ const Login = () => {
       <TextInput
         style={styles.input}
         placeholder="Username"
-        placeholderTextColor="#9E9E9E"
+        placeholderTextColor={colors.placeholder}
         value={username}
         onChangeText={setUsername}
         autoCapitalize="none"
@@ -61,7 +63,7 @@ const Login = () => {
       <TextInput
         style={styles.input}
         placeholder="Password"
-        placeholderTextColor="#9E9E9E"
+        placeholderTextColor={colors.placeholder}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
@@ -110,7 +112,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginBottom: 20,
     fontSize: 16,
-    color: '#000',
+    color: colors.text,
+    backgroundColor: colors.background,
   },
   button: {
     width: '100%',

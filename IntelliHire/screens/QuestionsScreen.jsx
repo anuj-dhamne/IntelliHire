@@ -17,9 +17,10 @@ import QuestionCard from '../components/QuestionCard';
 import { server } from '@env';
 import Navbar from '../components/Navbar';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import { useAppColors } from '../theme/colors';
 
 function QuestionsScreen({ route, navigation }) {
+  const colors = useAppColors();
   const [loading, setLoading] = useState(false);
 
   const { interviewId, questions } = route.params;

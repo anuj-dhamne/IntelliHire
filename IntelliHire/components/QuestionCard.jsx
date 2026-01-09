@@ -12,8 +12,11 @@ import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { server } from '@env';
+import { useAppColors } from '../theme/colors';
+
 
 const QuestionCard = ({ question, difficulty, category, questionId, interviewId }) => {
+  const colors = useAppColors();
   const [answer, setAnswer] = useState('');
   const [inputHeight, setInputHeight] = useState(40);
 
@@ -61,7 +64,7 @@ const QuestionCard = ({ question, difficulty, category, questionId, interviewId 
         <TextInput
           style={[styles.input, { height: Math.max(40, inputHeight) }]}
           placeholder="Write your answer..."
-          placeholderTextColor="#9E9E9E"
+          placeholderTextColor={colors.placeholder}
           value={answer}
           onChangeText={setAnswer}
           onContentSizeChange={(e) =>
@@ -118,7 +121,8 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 14,
-    color: '#000',
+    color: colors.text,
+    backgroundColor: colors.background,
     paddingVertical: 8,
     paddingRight: 10,
     maxHeight: 150,
