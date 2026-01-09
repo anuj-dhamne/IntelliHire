@@ -17,13 +17,44 @@ import QuestionCard from '../components/QuestionCard';
 import { server } from '@env';
 import Navbar from '../components/Navbar';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useAppColors } from '../theme/colors';
 
 function QuestionsScreen({ route, navigation }) {
-  const colors = useAppColors();
   const [loading, setLoading] = useState(false);
 
   const { interviewId, questions } = route.params;
+
+  const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: '700',
+    marginBottom: 10,
+    paddingTop: 10,
+    color: '#111827',
+    textAlign: 'center',
+  },
+  flatListContent: {
+    paddingTop: 10,
+    paddingBottom: 100,
+    paddingHorizontal: 16,
+  },
+  button: {
+    marginTop: 20,
+    marginBottom: 40,
+    backgroundColor: '#333',
+    padding: 16,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '600',
+  },
+});
 
   const giveFeedback = async () => {
     try {
@@ -98,37 +129,37 @@ function QuestionsScreen({ route, navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffffff',
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '700',
-    marginBottom: 10,
-    paddingTop: 10,
-    color: '#111827',
-    textAlign: 'center',
-  },
-  flatListContent: {
-    paddingTop: 10,
-    paddingBottom: 100,
-    paddingHorizontal: 16,
-  },
-  button: {
-    marginTop: 20,
-    marginBottom: 40,
-    backgroundColor: '#333',
-    padding: 16,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: '600',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#ffffff',
+//   },
+//   title: {
+//     fontSize: 28,
+//     fontWeight: '700',
+//     marginBottom: 10,
+//     paddingTop: 10,
+//     color: '#111827',
+//     textAlign: 'center',
+//   },
+//   flatListContent: {
+//     paddingTop: 10,
+//     paddingBottom: 100,
+//     paddingHorizontal: 16,
+//   },
+//   button: {
+//     marginTop: 20,
+//     marginBottom: 40,
+//     backgroundColor: '#333',
+//     padding: 16,
+//     borderRadius: 10,
+//     alignItems: 'center',
+//   },
+//   buttonText: {
+//     color: '#FFFFFF',
+//     fontSize: 18,
+//     fontWeight: '600',
+//   },
+// });
 
 export default QuestionsScreen;

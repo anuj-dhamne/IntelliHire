@@ -13,6 +13,56 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false); // <-- Loading state
 
+  const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    paddingVertical: 40,
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 30,
+  },
+  input: {
+    width: '100%',
+    height: 50,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    marginBottom: 20,
+    fontSize: 16,
+    color: colors.text,
+    backgroundColor: colors.background,
+  },
+  button: {
+    width: '100%',
+    backgroundColor: '#333',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  buttonDisabled: {
+    opacity: 0.7, // Visual feedback when disabled
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  link: {
+    marginTop: 20,
+    color: '#007BFF',
+    fontSize: 16,
+    textDecorationLine: 'underline',
+  },
+});
+
   const onLogin = async () => {
     console.log('Login Data:', { username, password });
     setLoading(true); // start loading
@@ -88,54 +138,54 @@ const Login = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    paddingHorizontal: 20,
-    paddingVertical: 40,
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: 30,
-  },
-  input: {
-    width: '100%',
-    height: 50,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    marginBottom: 20,
-    fontSize: 16,
-    color: colors.text,
-    backgroundColor: colors.background,
-  },
-  button: {
-    width: '100%',
-    backgroundColor: '#333',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  buttonDisabled: {
-    opacity: 0.7, // Visual feedback when disabled
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  link: {
-    marginTop: 20,
-    color: '#007BFF',
-    fontSize: 16,
-    textDecorationLine: 'underline',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#fff',
+//     paddingHorizontal: 20,
+//     paddingVertical: 40,
+//   },
+//   title: {
+//     fontSize: 30,
+//     fontWeight: 'bold',
+//     color: '#000',
+//     marginBottom: 30,
+//   },
+//   input: {
+//     width: '100%',
+//     height: 50,
+//     borderWidth: 1,
+//     borderColor: '#ccc',
+//     borderRadius: 10,
+//     paddingHorizontal: 15,
+//     marginBottom: 20,
+//     fontSize: 16,
+//     color: colors.text,
+//     backgroundColor: colors.background,
+//   },
+//   button: {
+//     width: '100%',
+//     backgroundColor: '#333',
+//     padding: 15,
+//     borderRadius: 10,
+//     alignItems: 'center',
+//   },
+//   buttonDisabled: {
+//     opacity: 0.7, // Visual feedback when disabled
+//   },
+//   buttonText: {
+//     color: '#fff',
+//     fontSize: 18,
+//     fontWeight: 'bold',
+//   },
+//   link: {
+//     marginTop: 20,
+//     color: '#007BFF',
+//     fontSize: 16,
+//     textDecorationLine: 'underline',
+//   },
+// });
 
 export default Login;

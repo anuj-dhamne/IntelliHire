@@ -20,8 +20,62 @@ const JobQuestionForm = () => {
   const [numQuestions, setNumQuestions] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F8FAFC',
+    // marginTop:40
+  },
+  scrollContainer: {
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 50,
+    flexGrow: 1,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: '700',
+    marginBottom: 30,
+    color: '#111827',
+    textAlign: 'center',
+  },
+  input: {
+    height: 50,
+    color: colors.text,
+    backgroundColor: colors.background,
+    borderColor: '#E5E7EB',
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    marginBottom: 15,
+    fontSize: 16,
+  },
+  textArea: {
+    height: 100,
+    textAlignVertical: 'top',
+  },
+  picker: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    marginBottom: 20,
+    color: colors.text,
+  },
+  button: {
+    width: '100%',
+    backgroundColor: '#333', // Dark grey button color
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '600',
+  },
+});
+
   const handleSubmit = async () => {
-    const colors = useAppColors();
+    // const colors = useAppColors();
     if (!jobTitle.trim()) {
       Alert.alert("Validation Error", "Please enter the job title.");
       return;
@@ -142,58 +196,58 @@ const JobQuestionForm = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F8FAFC',
-    // marginTop:40
-  },
-  scrollContainer: {
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 50,
-    flexGrow: 1,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '700',
-    marginBottom: 30,
-    color: '#111827',
-    textAlign: 'center',
-  },
-  input: {
-    height: 50,
-    color: colors.text,
-    backgroundColor: colors.background,
-    borderColor: '#E5E7EB',
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    marginBottom: 15,
-    fontSize: 16,
-  },
-  textArea: {
-    height: 100,
-    textAlignVertical: 'top',
-  },
-  picker: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    marginBottom: 20,
-  },
-  button: {
-    width: '100%',
-    backgroundColor: '#333', // Dark grey button color
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: '600',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#F8FAFC',
+//     // marginTop:40
+//   },
+//   scrollContainer: {
+//     paddingHorizontal: 20,
+//     paddingTop: 20,
+//     paddingBottom: 50,
+//     flexGrow: 1,
+//   },
+//   title: {
+//     fontSize: 28,
+//     fontWeight: '700',
+//     marginBottom: 30,
+//     color: '#111827',
+//     textAlign: 'center',
+//   },
+//   input: {
+//     height: 50,
+//     color: colors.text,
+//     backgroundColor: colors.background,
+//     borderColor: '#E5E7EB',
+//     borderWidth: 1,
+//     borderRadius: 10,
+//     paddingHorizontal: 15,
+//     marginBottom: 15,
+//     fontSize: 16,
+//   },
+//   textArea: {
+//     height: 100,
+//     textAlignVertical: 'top',
+//   },
+//   picker: {
+//     backgroundColor: '#fff',
+//     borderRadius: 10,
+//     marginBottom: 20,
+//   },
+//   button: {
+//     width: '100%',
+//     backgroundColor: '#333', // Dark grey button color
+//     padding: 15,
+//     borderRadius: 10,
+//     alignItems: 'center',
+//   },
+//   buttonText: {
+//     color: '#FFFFFF',
+//     fontSize: 18,
+//     fontWeight: '600',
+//   },
+// });
 
 export default JobQuestionForm;
 

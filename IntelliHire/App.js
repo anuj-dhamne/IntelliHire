@@ -1,16 +1,10 @@
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import AppNavigator from "./AppNavigator/AppNavigator.js"
-import { Appearance } from 'react-native';
+import AppNavigator from "./AppNavigator/AppNavigator";
 
 export default function App() {
-   useEffect(() => {
-    Appearance.setColorScheme('light');
-  }, []);
   return (
-   <SafeAreaProvider>
+    <SafeAreaProvider>
       <AppNavigator />
     </SafeAreaProvider>
   );
 }
-
-

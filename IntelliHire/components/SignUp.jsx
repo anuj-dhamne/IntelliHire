@@ -14,6 +14,55 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false); // loading state
 
+  const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: 20,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 30,
+  },
+  input: {
+    width: '100%',
+    height: 50,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    marginBottom: 20,
+    fontSize: 16,
+    color: colors.text,
+    backgroundColor: colors.background,
+  },
+  button: {
+    width: '100%',
+    backgroundColor: '#333',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  buttonDisabled: {
+    opacity: 0.7,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  link: {
+    marginTop: 20,
+    color: '#007BFF',
+    fontSize: 16,
+    textDecorationLine: 'underline',
+  },
+});
+
   const onSubmit = async () => {
     console.log("Signup Data:", { name, username, email, password });
     setLoading(true); // Start loading
@@ -107,53 +156,53 @@ const Signup = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 20,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: 30,
-  },
-  input: {
-    width: '100%',
-    height: 50,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    marginBottom: 20,
-    fontSize: 16,
-    color: colors.text,
-    backgroundColor: colors.background,
-  },
-  button: {
-    width: '100%',
-    backgroundColor: '#333',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  buttonDisabled: {
-    opacity: 0.7,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  link: {
-    marginTop: 20,
-    color: '#007BFF',
-    fontSize: 16,
-    textDecorationLine: 'underline',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#fff',
+//     padding: 20,
+//   },
+//   title: {
+//     fontSize: 28,
+//     fontWeight: 'bold',
+//     color: '#000',
+//     marginBottom: 30,
+//   },
+//   input: {
+//     width: '100%',
+//     height: 50,
+//     borderWidth: 1,
+//     borderColor: '#ccc',
+//     borderRadius: 10,
+//     paddingHorizontal: 15,
+//     marginBottom: 20,
+//     fontSize: 16,
+//     color: colors.text,
+//     backgroundColor: colors.background,
+//   },
+//   button: {
+//     width: '100%',
+//     backgroundColor: '#333',
+//     padding: 15,
+//     borderRadius: 10,
+//     alignItems: 'center',
+//   },
+//   buttonDisabled: {
+//     opacity: 0.7,
+//   },
+//   buttonText: {
+//     color: '#fff',
+//     fontSize: 18,
+//     fontWeight: 'bold',
+//   },
+//   link: {
+//     marginTop: 20,
+//     color: '#007BFF',
+//     fontSize: 16,
+//     textDecorationLine: 'underline',
+//   },
+// });
 
 export default Signup;

@@ -20,6 +20,62 @@ const QuestionCard = ({ question, difficulty, category, questionId, interviewId 
   const [answer, setAnswer] = useState('');
   const [inputHeight, setInputHeight] = useState(40);
 
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: '#fff',
+    padding: 25,
+    borderRadius: 16,
+    marginVertical: 12,
+    width: '100%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.15,
+    shadowRadius: 5,
+    elevation: 4, // Android shadow
+  },
+  questionText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#222',
+    marginBottom: 12,
+  },
+  detail: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 4,
+  },
+  detailValue: {
+    color: '#222',
+    fontWeight: '500',
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#f1f1f1',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: Platform.OS === 'ios' ? 10 : 6,
+    marginTop: 16,
+    alignItems: 'flex-end',
+  },
+  input: {
+    flex: 1,
+    fontSize: 14,
+    color: colors.text,
+    backgroundColor: colors.background,
+    paddingVertical: 8,
+    paddingRight: 10,
+    maxHeight: 150,
+  },
+  sendButton: {
+    backgroundColor: '#333',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
   const handleSubmit = async () => {
     if (!answer.trim()) return Alert.alert('Error', 'Answer cannot be empty.');
 
@@ -81,59 +137,59 @@ const QuestionCard = ({ question, difficulty, category, questionId, interviewId 
   );
 };
 
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: '#fff',
-    padding: 25,
-    borderRadius: 16,
-    marginVertical: 12,
-    width: '100%',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.15,
-    shadowRadius: 5,
-    elevation: 4, // Android shadow
-  },
-  questionText: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#222',
-    marginBottom: 12,
-  },
-  detail: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 4,
-  },
-  detailValue: {
-    color: '#222',
-    fontWeight: '500',
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#f1f1f1',
-    borderRadius: 12,
-    paddingHorizontal: 12,
-    paddingVertical: Platform.OS === 'ios' ? 10 : 6,
-    marginTop: 16,
-    alignItems: 'flex-end',
-  },
-  input: {
-    flex: 1,
-    fontSize: 14,
-    color: colors.text,
-    backgroundColor: colors.background,
-    paddingVertical: 8,
-    paddingRight: 10,
-    maxHeight: 150,
-  },
-  sendButton: {
-    backgroundColor: '#333',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   card: {
+//     backgroundColor: '#fff',
+//     padding: 25,
+//     borderRadius: 16,
+//     marginVertical: 12,
+//     width: '100%',
+//     shadowColor: '#000',
+//     shadowOffset: { width: 0, height: 3 },
+//     shadowOpacity: 0.15,
+//     shadowRadius: 5,
+//     elevation: 4, // Android shadow
+//   },
+//   questionText: {
+//     fontSize: 18,
+//     fontWeight: '600',
+//     color: '#222',
+//     marginBottom: 12,
+//   },
+//   detail: {
+//     fontSize: 14,
+//     color: '#666',
+//     marginBottom: 4,
+//   },
+//   detailValue: {
+//     color: '#222',
+//     fontWeight: '500',
+//   },
+//   inputContainer: {
+//     flexDirection: 'row',
+//     backgroundColor: '#f1f1f1',
+//     borderRadius: 12,
+//     paddingHorizontal: 12,
+//     paddingVertical: Platform.OS === 'ios' ? 10 : 6,
+//     marginTop: 16,
+//     alignItems: 'flex-end',
+//   },
+//   input: {
+//     flex: 1,
+//     fontSize: 14,
+//     color: colors.text,
+//     backgroundColor: colors.background,
+//     paddingVertical: 8,
+//     paddingRight: 10,
+//     maxHeight: 150,
+//   },
+//   sendButton: {
+//     backgroundColor: '#333',
+//     padding: 15,
+//     borderRadius: 10,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
 
 export default QuestionCard;
